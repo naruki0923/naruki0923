@@ -9,34 +9,42 @@ Python でのバックエンド・自動化まわりが中心です。
 
 ---
 
-### 🎬 [tiktok-pipeline](https://github.com/naruki0923/tiktok-pipeline)
+### 🎬 SNS Content Automation Pipeline — [tiktok-pipeline](https://github.com/naruki0923/tiktok-pipeline)
 
-ショート動画の **リサーチ → 台本生成 → 動画生成 → 投稿 → 分析** を段ごとに切って自動化しています。
-公開後の指標を回収して台本のルールに反映する、というループを回すのが目的です。
+SNS向けショート動画の
+**リサーチ → 台本生成 → 音声生成 → 動画編集 → 投稿準備 → 分析**
+までをほぼ自動化したシステムです。
 
-- **Python / Playwright / VOICEVOX / Flask / discord.py / Cloudflare Workers**
-- 各段を独立したスクリプトにして、**途中の段から流し直せる**ようにしてある
-- 進行は Discord bot から叩く。状態はダッシュボードで見る
-- Python 61ファイル / 約10,600行
+- Python中心、約10,000行規模
+- 約2か月以上継続運用
+- 約100本の動画を生成
+- 1本あたり約70分の作業を、最終確認・投稿操作のみの**約10秒**まで削減
+- 最大10万回以上再生
+- 運用開始後フォロワー約4,000人増加
+- 毎週の投稿結果を分析し、リサーチ・台本生成プロンプトを改善
+- エラー発生時はログ解析 → コード修正 → 再実行まで行う復旧フローを構築
 
-分析の段を後から足したのは、台本の重複判定が「この切り口は前に扱ったか」しか見ておらず、
-**当たった切り口ほど「重複」で弾かれて二度と作れない**状態になっていたためです。
-実績を持たせて「伸びた切り口は再訪してよい」と判定させるようにしました。
+特に、人が感覚的に行っていた「伸びる動画の選定基準」を言語化し、
+AIが判断可能な形へ落とし込むことに力を入れました。
+
+**Python / Playwright / VOICEVOX / Flask / discord.py / Cloudflare Workers**
 
 ---
 
-### 🍚 [Weight-and-diet-management](https://github.com/naruki0923/Weight-and-diet-management)
+### 🍚 AI Diet & Weight Management — [Weight-and-diet-management](https://github.com/naruki0923/Weight-and-diet-management)
 
-食事の写真から Gemini がカロリーと PFC を算出し、Google スプレッドシートに記録して、
-その日の合計と「目標まであと何 kcal か」を返します。
+食事管理を継続しやすくするため、
+**写真を選ぶだけ**で食事内容・栄養情報を記録できる仕組みを開発しました。
 
-- **Python / FastAPI / Gemini API / Google Sheets API / Vercel**
-- 入力は **iOSショートカット**（写真を撮る → 共有 → タップ）。専用アプリを作らずに済ませた
-- BMR / TDEE の計算はシートに依存しない純粋な関数に分けてある
-- 設定の変更はスプレッドシートの「設定シート」を直接編集する（管理画面を作らない選択）
+- 食事写真からAIが内容・カロリー等を解析
+- 商品パッケージの栄養表示も活用
+- Apple Healthと体重計データを連携
+- iOS Shortcutsを利用し、入力作業を最小化
+- 約2か月継続運用
 
-もともと LINE Bot でしたが、**入力に手数がかかって自分が続かなかった**ので、
-写真を撮ってから記録が終わるまでのタップ数が最小になる形に作り直しました。
+「入力を頑張る」のではなく、**入力そのものを減らすUX**を意識して設計しています。
+
+**Python / FastAPI / Gemini API / Google Sheets API / Vercel**
 
 ---
 
