@@ -46,6 +46,24 @@ AIが判断可能な形へ落とし込むことに力を入れました。
 
 ---
 
+### 🐱 Chappie — macOS常駐アシスタント — [chappie](https://github.com/naruki0923/chappie)
+
+画面の隅に小さな猫が常駐し、「チャッピー、今日の予定」と声をかけるだけで
+**予定確認・ファイル検索・一般の質問・Amazonの注文**まで行うネイティブアプリです。
+
+- Swift / SwiftUI・AppKit で実装。メニューバー常駐、全デスクトップ表示、ログイン時起動
+- 呼びかけ検出と文字起こしは Mac 内の音声認識で処理。カレンダー・Spotlight 検索も**ローカル完結**で AI に送らない
+- 一般の質問は Codex CLI 経由で回答（read-only sandbox・一時セッションで実行）
+- Amazon 購入は「商品・数量・送料込み上限・24時間の重複防止」をルールとして先に登録し、
+  金額を読み上げて「いいよ」を得たあと**専用ブラウザで条件を再確認**してから注文
+- ログイン・OTP・CAPTCHA・支払い方法の追加が必要な場面では**止まる**ように設計
+
+「音声で何でもできる」より、**勝手に買わない・認証情報を扱わない**ための境界を先に決めて作りました。
+
+**Swift / SwiftUI / AppKit / Speech / AVFoundation / EventKit / WebKit / Codex CLI**
+
+---
+
 ### 📈 [emaxis-discord-notifier](https://github.com/naruki0923/emaxis-discord-notifier)
 
 投資信託の基準価額を公式サイトから取得して、毎朝8時に Discord へ通知します。
@@ -60,4 +78,4 @@ AIが判断可能な形へ落とし込むことに力を入れました。
 
 ### 使っているもの
 
-`Python` `asyncio` `FastAPI` `Flask` `SQLite` `Playwright` `Docker` `GitHub Actions` `Google Sheets API` `Gemini API` `Cloudflare (Tunnel / Workers)` `Vercel` `launchd`
+`Python` `Swift` `asyncio` `FastAPI` `Flask` `SQLite` `Playwright` `Docker` `GitHub Actions` `Google Sheets API` `Gemini API` `Cloudflare (Tunnel / Workers)` `Vercel` `launchd`
